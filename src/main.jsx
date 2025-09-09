@@ -6,8 +6,8 @@ import { router } from './Routers/router.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}>
-
-    </RouterProvider>
+    <div className='host-grotesk'>
+      <RouterProvider router={router}></RouterProvider>
+    </div>
   </StrictMode>,
 )
