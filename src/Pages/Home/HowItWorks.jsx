@@ -53,7 +53,7 @@ export const HowItWorks = () => {
         <section ref={sectionRef} className="mt-20 w-[90%] mx-auto max-w-6xl ">
             <div className="text-center mb-12">
                 <h4 className="uppercase text-gray-500 text-lg">How It Works</h4>
-                <h3 className="text-2xl mt-2 md:text-4xl">
+                <h3 className="text-2xl mt-2 md:text-4xl font-semibold">
                     Simple Steps to your{" "}
                     <span className="bg-gradient-to-r from-[#ff8971] to-[#fa2a00] bg-clip-text text-transparent">
                         Perfect Ride
