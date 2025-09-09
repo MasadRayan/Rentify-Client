@@ -45,7 +45,7 @@ export const CarBrands = () => {
 
     ScrollTrigger.create({
       trigger: containerRef.current,
-      start: "bottom bottom",
+      start: "top 70%",
       onEnter: animateLogos,
       onLeaveBack: () => ScrollTrigger.refresh(),
     });
@@ -54,7 +54,7 @@ export const CarBrands = () => {
   return (
     <section
       ref={containerRef}
-      className="w-[80%] mx-auto mb-100"
+      className="w-[80%] mx-auto"
     >
       <div className="text-center mb-5">
         <h4 className="uppercase text-gray-500 text-xl md:text-2xl">

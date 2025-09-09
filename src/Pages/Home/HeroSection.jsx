@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import CarImage from "../../../public/HeroCar.png";
+import { Link } from "react-router";
 
 export const HeroSection = () => {
   const textRef = useRef(null);
@@ -39,7 +40,9 @@ export const HeroSection = () => {
           options, great prices, and a hassle-free experience. Get started in a
           few clicks!
         </p>
-
+        <Link to="/allCars" className="btn mt-5 bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white">
+          All Cars
+        </Link>
         
       </section>
 
