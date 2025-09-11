@@ -20,9 +20,14 @@ export const Navbar = () => {
             link: "/allCars",
         },
         {
-            text: "Be A Rider",
+            text: "List Your Cars",
             icon: "ri-user-line",
-            link: "/beARider",
+            link: "/carOwner",
+        },
+        {
+            text: "Be A Driver",
+            icon: "ri-user-line",
+            link: "/beADriver",
         },
         {
             text: "Dashboard",
@@ -100,10 +105,18 @@ export const Navbar = () => {
                         </li>
                         <li>
                             <NavLink
-                                to={'/beARider'}
+                                to={'/carOwners'}
                                 className="text-[1.1rem] relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-[#fe5d3d] hover:after:w-full after:transition-all after:duration-300"
                             >
-                                Be A Rider
+                                List Your Cars
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to={'/beADriver'}
+                                className="text-[1.1rem] relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-[#fe5d3d] hover:after:w-full after:transition-all after:duration-300"
+                            >
+                                Be A Driver
                             </NavLink>
                         </li>
                         <li>
