@@ -46,7 +46,7 @@ export const FAQ = () => {
         {/* Q1 */}
         <div
           ref={(el) => (faqRefs.current[0] = el)}
-          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
+          className="collapse collapse-arrow  border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
         >
           <input type="radio" name="faq-accordion" defaultChecked />
           <div className="collapse-title text-lg font-semibold">
@@ -67,7 +67,7 @@ export const FAQ = () => {
         {/* Q2 */}
         <div
           ref={(el) => (faqRefs.current[1] = el)}
-          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
+          className="collapse collapse-arrow  border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
         >
           <input type="radio" name="faq-accordion" />
           <div className="collapse-title text-lg font-semibold">
@@ -85,7 +85,7 @@ export const FAQ = () => {
         {/* Q3 */}
         <div
           ref={(el) => (faqRefs.current[2] = el)}
-          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
+          className="collapse collapse-arrow  border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
         >
           <input type="radio" name="faq-accordion" />
           <div className="collapse-title text-lg font-semibold">
@@ -107,7 +107,7 @@ export const FAQ = () => {
         {/* Q4 */}
         <div
           ref={(el) => (faqRefs.current[3] = el)}
-          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
+          className="collapse collapse-arrow  border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
         >
           <input type="radio" name="faq-accordion" />
           <div className="collapse-title text-lg font-semibold">
@@ -124,7 +124,7 @@ export const FAQ = () => {
         {/* Q5 */}
         <div
           ref={(el) => (faqRefs.current[4] = el)}
-          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
+          className="collapse collapse-arrow  border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-out"
         >
           <input type="radio" name="faq-accordion" />
           <div className="collapse-title text-lg font-semibold">
