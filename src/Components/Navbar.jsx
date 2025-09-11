@@ -133,13 +133,13 @@ export const Navbar = () => {
                     <div className="hidden lg:flex items-center gap-5">
                         <NavLink
                             to={"/login"}
-                            className="px-3 py-1.5 border border-[#111] rounded text-sm font-medium"
+                            className="btn btn-outline border border-gradient-to-r from-[#ff8971] to-[#fa2a00] text-[#fa2a00]"
                         >
                             Sign In
                         </NavLink>
                         <NavLink
                             to={'/register'}
-                            className="px-3 py-1.5 rounded text-sm font-medium bg-[#474fa0] text-white"
+                            className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white"
                         >
                             Create Account
                         </NavLink>

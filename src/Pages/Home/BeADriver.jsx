@@ -29,7 +29,7 @@ export const BeADriver = () => {
     return (
         <section
             className="w-[80vw] mx-auto my-24  flex flex-col md:flex-row items-center justify-between rounded-[26px] px-5 py-8 md:py-20 
-      bg-gradient-to-br from-[#fe5d3d] to-[#ffae17] overflow-hidden mb-100"
+      bg-gradient-to-br from-[#fe5d3d] to-[#ffae17] overflow-hidden "
         >
             {/* Left Text */}
             <div className="text-white md:ml-20 text-center md:text-left">
