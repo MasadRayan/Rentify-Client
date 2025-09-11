@@ -5,6 +5,7 @@ import { HowItWorks } from './HowItWorks';
 import Services from './Services';
 import { BeADriver } from './BeADriver';
 import { FAQ } from './FAQ';
+import { ScrollRestoration } from 'react-router';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Services></Services>
             <BeADriver></BeADriver>
             <FAQ></FAQ>
+            <ScrollRestoration></ScrollRestoration>
         </div>
     );
 };
