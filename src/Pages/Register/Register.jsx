@@ -16,6 +16,7 @@ const Register = () => {
     const navigate = useNavigate();
     const [profilePic, setProfilePic] = useState('')
     // const axiosInstance = useAxios();
+    
     const from = location.state?.from || '/';
 
     const { register,
