@@ -11,26 +11,7 @@ const Footer = () => {
   const footerRef = useRef(null);
   const colRefs = useRef([]);
 
-  useGSAP(() => {
-    gsap.fromTo(
-      colRefs.current,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    
-  }, []);
+  
 
   return (
     <footer
