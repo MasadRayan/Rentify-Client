@@ -50,7 +50,7 @@ const AuthProvider = ({children}) => {
         loginUser,
         logOut,
         updateUser,
-        signImWithGoogle
+        signImWithGoogle,
     }
     
     return <AuthContext value={authData}>

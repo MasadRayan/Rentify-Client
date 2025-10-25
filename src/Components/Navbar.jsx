@@ -1,13 +1,18 @@
 import "remixicon/fonts/remixicon.css";
-import { useState, useRef } from "react";
+import { useState, useRef, use } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { NavLink } from "react-router";
+import useAuth from "../Hooks/useAuth";
 
 export const Navbar = () => {
     const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
     const drawerRef = useRef(null);
     const linksRef = useRef([]);
+    const { user } = useAuth();
+    const { logOut } = useAuth();
+    console.log(user);
+
     const links = [
         {
             text: "Home",
@@ -50,6 +55,15 @@ export const Navbar = () => {
         }
     };
 
+    const handleLogOut = async () => {
+        try {
+            await logOut();
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     useGSAP(
         () => {
             if (mobileDrawerOpen) {
@@ -77,6 +91,17 @@ export const Navbar = () => {
         },
         { dependencies: [mobileDrawerOpen] }
     );
+
+    const handleNavClick = () => {
+        gsap.to(drawerRef.current, {
+            y: "-100%",
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.in",
+            onComplete: () => setMobileDrawerOpen(false),
+        });
+    };
+
 
     return (
         <nav className="sticky top-0 z-[999] md:px-10 py-2 backdrop-blur-md">
@@ -130,20 +155,31 @@ export const Navbar = () => {
                     </ul>
 
                     {/* Desktop Auth Buttons */}
-                    <div className="hidden lg:flex items-center gap-5">
-                        <NavLink
-                            to={"/login"}
-                            className="btn btn-outline border border-gradient-to-r from-[#ff8971] to-[#fa2a00] text-[#fa2a00]"
-                        >
-                            Sign In
-                        </NavLink>
-                        <NavLink
-                            to={'/register'}
-                            className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white"
-                        >
-                            Create Account
-                        </NavLink>
-                    </div>
+                    {
+                        user ? (<>
+                            <div className=" justify-end items-center gap-4 hidden lg:flex">
+                                <img src={user.photoURL} alt={user.displayName} referrerPolicy="no-referrer" className="w-10 h-10 rounded-full " />
+
+
+                                <button onClick={handleLogOut} className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white ">Log Out</button>
+                            </div>
+                        </>) : (
+                            <div className="hidden lg:flex items-center gap-5">
+                                <NavLink
+                                    to={"/login"}
+                                    className="btn btn-outline border border-gradient-to-r from-[#ff8971] to-[#fa2a00] text-[#fa2a00]"
+                                >
+                                    Sign In
+                                </NavLink>
+                                <NavLink
+                                    to={'/register'}
+                                    className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white"
+                                >
+                                    Create Account
+                                </NavLink>
+                            </div>
+                        )
+                    }
 
                     {/* Mobile Menu Toggle */}
                     <div className="lg:hidden flex flex-col justify-end z-20">
@@ -178,6 +214,7 @@ export const Navbar = () => {
                                 >
                                     <NavLink
                                         to={item.link}
+                                        onClick={handleNavClick} 
                                         className="text-[1.6rem] relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-[#fe5d3d] hover:after:w-full after:transition-all after:duration-300"
                                     >
                                         <i className={`${item.icon} mr-2`}></i> {item.text}
@@ -186,20 +223,36 @@ export const Navbar = () => {
                             ))}
                         </ul>
 
-                        <div className="flex gap-5 mt-8">
-                            <NavLink
-                                to={"/login"}
-                                className="px-3 py-1.5 border border-[#111] rounded text-sm font-medium"
-                            >
-                                Sign In
-                            </NavLink>
-                            <NavLink
-                                to={"/register"}
-                                className="px-3 py-1.5 rounded text-sm font-medium bg-[#474fa0] text-white"
-                            >
-                                Create Account
-                            </NavLink>
-                        </div>
+                        {
+                            user ? (<>
+                                <div className="flex flex-col justify-center items-center gap-7  mt-8">
+                                    <div className="flex justify-center items-center gap-4">
+                                        <img src={user.photoURL} alt={user.displayName} referrerPolicy="no-referrer" className="w-15 h-15 rounded-full " />
+                                        <div><p className=" font-medium text-2xl">{user.displayName}</p></div>
+                                    </div>
+
+                                    <button onClick = {() => {handleLogOut(); handleNavClick();}}
+                                    className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white ">Log Out</button>
+                                </div>
+                            </>) : (
+                                <div className="items-center gap-5 flex flex-col mt-8">
+                                    <NavLink
+                                        to={"/login"}
+                                        onClick={handleNavClick} 
+                                        className="btn btn-outline border border-gradient-to-r from-[#ff8971] to-[#fa2a00] text-[#fa2a00]"
+                                    >
+                                        Sign In
+                                    </NavLink>
+                                    <NavLink
+                                        to={'/register'}
+                                        onClick={handleNavClick} 
+                                        className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white"
+                                    >
+                                        Create Account
+                                    </NavLink>
+                                </div>
+                            )
+                        }
                     </div>
                 )}
             </div>
