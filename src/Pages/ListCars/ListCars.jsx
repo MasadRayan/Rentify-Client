@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import axios from "axios";
 
 
 const ListCars = () => {
     const [carImage, setCarImage] = useState(null);
     const {user} = useAuth();
+    const axiosSecure = useAxiosSecure();
 
     const {
         register,
@@ -23,7 +25,13 @@ const ListCars = () => {
         data.status = "Pending"
         data.postedAt = new Date().toISOString();
         console.log(data);
-        toast.success("Car information submitted successfully!");
+        axiosSecure.post('/cars', data)
+            .then(res => {
+                console.log(res.data);
+            })
+
+
+        toast.success("Car information submitted For Approval!");
         reset();
     };
 
@@ -224,7 +232,6 @@ const ListCars = () => {
                 <div>
                     <h2 className="text-xl font-semibold mb-4 text-[#fa2a00]">Media</h2>
                     <input
-                        {...register("carImages", { required: true })}
                         type="file"
                         onChange={handleImageUpload}
                         accept="image/*"
