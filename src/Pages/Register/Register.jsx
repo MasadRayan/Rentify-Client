@@ -33,15 +33,15 @@ const Register = () => {
                 const user = userCredential.user;
 
                 // update userinfo in the database
-                const userInfo = {
-                    email: data.email,
-                    displayName: data.name,
-                    photoURL: profilePic,
-                    role: 'student',
-                    createdAt: new Date().toISOString(),
-                    lastLogin: new Date().toISOString()
-                }
-                const userRes = await axiosInstance.post('/users', userInfo);
+                // const userInfo = {
+                //     email: data.email,
+                //     displayName: data.name,
+                //     photoURL: profilePic,
+                //     role: 'student',
+                //     createdAt: new Date().toISOString(),
+                //     lastLogin: new Date().toISOString()
+                // }
+                // const userRes = await axiosInstance.post('/users', userInfo);
 
 
                 // set image in the firebase
@@ -106,7 +106,7 @@ const Register = () => {
                 `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`,
                 formData
             );
-            
+
             setProfilePic(res.data.secure_url);
         } catch (error) {
             console.error("Cloudinary upload failed:", error);
