@@ -40,7 +40,7 @@ export const HeroSection = () => {
           options, great prices, and a hassle-free experience. Get started in a
           few clicks!
         </p>
-        <Link to="/allCars" className="btn mt-5 bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white">
+        <Link to="/allCars" className="btn mt-5 bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white hover:scale-105 hover:shadow-lg transition-all">
           All Cars
         </Link>
         

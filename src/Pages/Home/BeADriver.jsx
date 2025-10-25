@@ -41,7 +41,7 @@ export const BeADriver = () => {
                         Join our community of trusted drivers and start earning with every ride.
                         Enjoy flexible hours, competitive payouts, and the freedom to drive on your own schedule.
                     </p>
-                    <button className="mt-4 bg-gradient-to-r from-[#ff8971] to-[#fa2a00] px-3 py-1.5 border-orange-300 rounded text-sm hover:scale-110 hover:shadow-md font-medium">
+                    <button className="mt-4 bg-gradient-to-r from-[#ff8971] to-[#fa2a00] px-3 py-1.5 border-orange-300 rounded text-sm hover:scale-110 hover:shadow-md font-mediumn transition-all">
                         Apply Now
                     </button>
                 </div>

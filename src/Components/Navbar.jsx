@@ -2,8 +2,9 @@ import "remixicon/fonts/remixicon.css";
 import { useState, useRef, use } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import useAuth from "../Hooks/useAuth";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 export const Navbar = () => {
     const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -11,7 +12,6 @@ export const Navbar = () => {
     const linksRef = useRef([]);
     const { user } = useAuth();
     const { logOut } = useAuth();
-    console.log(user);
 
     const links = [
         {
@@ -34,11 +34,7 @@ export const Navbar = () => {
             icon: "ri-user-line",
             link: "/beADriver",
         },
-        {
-            text: "Dashboard",
-            icon: "ri-dashboard-line",
-            link: "/dashboard",
-        },
+
     ]
 
     const toggleNavbar = () => {
@@ -107,9 +103,13 @@ export const Navbar = () => {
         <nav className="sticky top-0 z-[999] md:px-10 py-2 backdrop-blur-md">
             <div className="container mx-auto px-4 flex flex-col">
                 <div className="flex justify-between items-center">
-                    <h1 className="text-2xl lg:text-[2rem] font-medium tracking-wide text-black">
-                        <i className="ri-car-line"></i>Rentify
-                    </h1>
+                    <div>
+                        <Link to={'/'} >
+                            <h1 className="text-2xl lg:text-[2rem] font-medium tracking-wid ">
+                                <i className="ri-car-line"></i>Rentify
+                            </h1>
+                        </Link>
+                    </div>
 
                     <ul className="hidden lg:flex ml-14 space-x-12">
                         <li>
@@ -144,45 +144,55 @@ export const Navbar = () => {
                                 Be A Driver
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink
-                                to={'/dashboard'}
-                                className="text-[1.1rem] relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-[#fe5d3d] hover:after:w-full after:transition-all after:duration-300"
-                            >
-                                Dashboard
-                            </NavLink>
-                        </li>
+                        {
+                            user ? (<>
+                                <li>
+                                    <NavLink
+                                        to={'/dashboard'}
+                                        className="text-[1.1rem] relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-[#fe5d3d] hover:after:w-full after:transition-all after:duration-300"
+                                    >
+                                        Dashboard
+                                    </NavLink>
+                                </li>
+                            </>) : (<></>)
+                        }
                     </ul>
 
                     {/* Desktop Auth Buttons */}
-                    {
-                        user ? (<>
-                            <div className=" justify-end items-center gap-4 hidden lg:flex">
-                                <img src={user.photoURL} alt={user.displayName} referrerPolicy="no-referrer" className="w-10 h-10 rounded-full " />
+                    <div className="flex justify-end items-center gap-4">
+                        <div className="hidden lg:flex">
+                            <ThemeToggle></ThemeToggle>
+                        </div>
+                        {
+                            user ? (<>
+                                <div className=" justify-end items-center gap-4 hidden lg:flex">
+                                    <img src={user.photoURL} alt={user.displayName} referrerPolicy="no-referrer" className="w-10 h-10 rounded-full " />
 
 
-                                <button onClick={handleLogOut} className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white ">Log Out</button>
-                            </div>
-                        </>) : (
-                            <div className="hidden lg:flex items-center gap-5">
-                                <NavLink
-                                    to={"/login"}
-                                    className="btn btn-outline border border-gradient-to-r from-[#ff8971] to-[#fa2a00] text-[#fa2a00]"
-                                >
-                                    Sign In
-                                </NavLink>
-                                <NavLink
-                                    to={'/register'}
-                                    className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white"
-                                >
-                                    Create Account
-                                </NavLink>
-                            </div>
-                        )
-                    }
+                                    <button onClick={handleLogOut} className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white ">Log Out</button>
+                                </div>
+                            </>) : (
+                                <div className="hidden lg:flex items-center gap-5">
+                                    <NavLink
+                                        to={"/login"}
+                                        className="btn btn-outline border border-gradient-to-r from-[#ff8971] to-[#fa2a00] text-[#fa2a00]"
+                                    >
+                                        Sign In
+                                    </NavLink>
+                                    <NavLink
+                                        to={'/register'}
+                                        className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white"
+                                    >
+                                        Create Account
+                                    </NavLink>
+                                </div>
+                            )
+                        }
+                    </div>
 
                     {/* Mobile Menu Toggle */}
-                    <div className="lg:hidden flex flex-col justify-end z-20">
+                    <div className="lg:hidden flex gap-3 justify-end z-20">
+                        <ThemeToggle></ThemeToggle>
                         <button onClick={toggleNavbar} className="text-xl font-bold">
                             {mobileDrawerOpen ? (
                                 <p></p>
@@ -214,38 +224,52 @@ export const Navbar = () => {
                                 >
                                     <NavLink
                                         to={item.link}
-                                        onClick={handleNavClick} 
+                                        onClick={handleNavClick}
                                         className="text-[1.6rem] relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-[#fe5d3d] hover:after:w-full after:transition-all after:duration-300"
                                     >
                                         <i className={`${item.icon} mr-2`}></i> {item.text}
                                     </NavLink>
                                 </li>
                             ))}
+                            {user && (<>
+                                <li>
+                                    <NavLink
+                                        to={'/dashboard'}
+                                        onClick={handleNavClick}
+                                        className="text-2xl relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-[#fe5d3d] hover:after:w-full after:transition-all after:duration-300"
+                                    >
+
+                                        <i className="ri-dashboard-line mr-2">Dashboard</i>
+
+                                    </NavLink>
+                                </li>
+                            </>)}
+
                         </ul>
 
                         {
                             user ? (<>
                                 <div className="flex flex-col justify-center items-center gap-7  mt-8">
                                     <div className="flex justify-center items-center gap-4">
-                                        <img src={user.photoURL} alt={user.displayName} referrerPolicy="no-referrer" className="w-15 h-15 rounded-full " />
-                                        <div><p className=" font-medium text-2xl">{user.displayName}</p></div>
+                                        <img src={user.photoURL} alt={user.displayName} referrerPolicy="no-referrer" className="w-10 h-10 rounded-full " />
+                                        <div><p className=" font-medium text-xl">{user.displayName}</p></div>
                                     </div>
 
-                                    <button onClick = {() => {handleLogOut(); handleNavClick();}}
-                                    className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white ">Log Out</button>
+                                    <button onClick={() => { handleLogOut(); handleNavClick(); }}
+                                        className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white ">Log Out</button>
                                 </div>
                             </>) : (
                                 <div className="items-center gap-5 flex flex-col mt-8">
                                     <NavLink
                                         to={"/login"}
-                                        onClick={handleNavClick} 
+                                        onClick={handleNavClick}
                                         className="btn btn-outline border border-gradient-to-r from-[#ff8971] to-[#fa2a00] text-[#fa2a00]"
                                     >
                                         Sign In
                                     </NavLink>
                                     <NavLink
                                         to={'/register'}
-                                        onClick={handleNavClick} 
+                                        onClick={handleNavClick}
                                         className="btn bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white"
                                     >
                                         Create Account
