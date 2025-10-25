@@ -16,7 +16,7 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="bg-black text-white rounded-4xl mx-4 pt-10 pb-6 mt-16"
+      className="bg-black text-white pt-10 pb-6 mt-16 "
     >
       <div className="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand + Description */}

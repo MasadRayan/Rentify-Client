@@ -41,7 +41,7 @@ export const HeroSection = () => {
           few clicks!
         </p>
         <Link to="/allCars" className="btn mt-5 bg-gradient-to-r from-[#ff8971] to-[#fa2a00] text-white hover:scale-105 hover:shadow-lg transition-all">
-          All Cars
+          Rent Now
         </Link>
         
       </section>

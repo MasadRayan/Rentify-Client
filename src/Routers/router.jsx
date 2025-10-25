@@ -3,6 +3,8 @@ import RootLayout from "../Layouts/RootLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import PrivateRoute from "../Routes/PrivateRoute";
+import ListCars from "../Pages/ListCars/ListCars";
 
 export const router  = createBrowserRouter([
     {
@@ -20,7 +22,13 @@ export const router  = createBrowserRouter([
             {
                 path: '/register',
                 Component: Register,
-            }   
+            },
+            {
+                path: '/listCars',
+                element: <PrivateRoute>
+                    <ListCars></ListCars>
+                </PrivateRoute>
+            }  
         ]
     }
 ])

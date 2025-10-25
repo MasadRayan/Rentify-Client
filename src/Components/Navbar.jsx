@@ -130,7 +130,7 @@ export const Navbar = () => {
                         </li>
                         <li>
                             <NavLink
-                                to={'/carOwners'}
+                                to={'/listCars'}
                                 className="text-[1.1rem] relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[3px] after:bg-[#fe5d3d] hover:after:w-full after:transition-all after:duration-300"
                             >
                                 List Your Cars
