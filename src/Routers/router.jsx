@@ -5,6 +5,9 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "../Routes/PrivateRoute";
 import ListCars from "../Pages/ListCars/ListCars";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import MyCars from "../DashboardPages/CarOwnerDashboard/MyCars";
+import Profile from "../DashboardPages/Profile";
 
 export const router  = createBrowserRouter([
     {
@@ -28,7 +31,29 @@ export const router  = createBrowserRouter([
                 element: <PrivateRoute>
                     <ListCars></ListCars>
                 </PrivateRoute>
-            }  
+            },
+            
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute>
+            <DashboardLayout></DashboardLayout>
+        </PrivateRoute>,
+        children: [
+            // {
+            //     index: true,
+            //     Component: Profile
+            // },
+            {
+                path: 'profile',
+                Component: Profile
+            },
+
+            {
+                path: 'myCars',
+                Component: MyCars
+            }
         ]
     }
 ])
