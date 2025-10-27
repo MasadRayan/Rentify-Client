@@ -8,6 +8,7 @@ import ListCars from "../Pages/ListCars/ListCars";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import MyCars from "../DashboardPages/CarOwnerDashboard/MyCars";
 import Profile from "../DashboardPages/Profile";
+import DashboardHome from "../DashboardPages/DashboardHome/DashboardHome";
 
 export const router  = createBrowserRouter([
     {
@@ -41,10 +42,10 @@ export const router  = createBrowserRouter([
             <DashboardLayout></DashboardLayout>
         </PrivateRoute>,
         children: [
-            // {
-            //     index: true,
-            //     Component: Profile
-            // },
+            {
+                index: true,
+                Component: DashboardHome,
+            },
             {
                 path: 'profile',
                 Component: Profile
