@@ -23,7 +23,8 @@ const ListCars = () => {
         data.carImage = carImage;
         data.userName = user?.displayName;
         data.userEmail = user?.email;
-        data.status = "Pending"
+        data.status = "Pending";
+        data.assignedTo = "Not Assigned";
         data.postedAt = new Date().toISOString();
         console.log(data);
         axiosInstance.post('/cars', data)

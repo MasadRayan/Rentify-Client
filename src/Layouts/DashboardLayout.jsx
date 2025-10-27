@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Outlet, Link } from "react-router";
-import { FaBars, FaHome, FaUser, FaCog } from "react-icons/fa";
+import { Outlet, NavLink } from "react-router";
+import { FaBars, FaHome, FaUser, FaCog, FaCar } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -19,11 +19,11 @@ const DashboardLayout = () => {
                 {/* Navbar for small screens */}
                 <div className="flex items-center justify-between bg-base-100 p-4 shadow-md lg:hidden">
                     <div>
-                        <Link to={'/'} >
+                        <NavLink to={'/'} >
                             <h1 className="text-2xl lg:text-[2rem] font-medium tracking-wid ">
                                 <i className="ri-car-line"></i>Rentify
                             </h1>
-                        </Link>
+                        </NavLink>
                     </div>
                     <label
                         htmlFor="dashboard-drawer"
@@ -46,30 +46,37 @@ const DashboardLayout = () => {
                     {/* Logo or title */}
                     <div className="p-4 border-b border-base-300">
                         <div>
-                            <Link to={'/'} >
+                            <NavLink to={'/'} >
                                 <h1 className="text-2xl lg:text-[2rem] font-medium tracking-wid ">
                                     <i className="ri-car-line"></i>Rentify
                                 </h1>
-                            </Link>
+                            </NavLink>
                         </div>
                     </div>
 
                     {/* Sidebar Menu */}
                     <ul className="menu p-4 text-base space-y-2 w-full">
                         <li>
-                            <Link to="/dashboard" className="flex items-center gap-3">
+                            <NavLink to="/dashboard" className="flex items-center gap-3">
                                 <FaHome className="text-lg" /> Home
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/dashboard/profile" className="flex items-center gap-3">
+                            <NavLink to="/dashboard/profile" className="flex items-center gap-3">
                                 <FaUser className="text-lg" /> Profile
-                            </Link>
+                            </NavLink>
                         </li>
+
                         <li>
-                            <Link to="/dashboard/settings" className="flex items-center gap-3">
+                            <NavLink to="/dashboard/myCars" className="flex items-center gap-3">
+                                <FaCar className="text-lg" /> My Cars
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink to="/dashboard/settings" className="flex items-center gap-3">
                                 <FaCog className="text-lg" /> Settings
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </aside>
