@@ -4,12 +4,13 @@ import { toast } from "react-toastify";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import axios from "axios";
+import useAxios from "../../Hooks/useAxios";
 
 
 const ListCars = () => {
     const [carImage, setCarImage] = useState(null);
     const {user} = useAuth();
-    const axiosSecure = useAxiosSecure();
+    const axiosInstance = useAxios();
 
     const {
         register,
@@ -25,7 +26,7 @@ const ListCars = () => {
         data.status = "Pending"
         data.postedAt = new Date().toISOString();
         console.log(data);
-        axiosSecure.post('/cars', data)
+        axiosInstance.post('/cars', data)
             .then(res => {
                 console.log(res.data);
             })

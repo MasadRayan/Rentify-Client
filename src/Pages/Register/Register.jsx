@@ -4,19 +4,18 @@ import { Link, ScrollRestoration, useLocation, useNavigate } from 'react-router'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-// import useAxios from '../../Hooks/useAxios';
 import Lottie from 'lottie-react';
 import lottieBg from '../../assets/lottie/carLottie.json'
 import useAuth from '../../Hooks/useAuth';
-
+import useAxios from '../../Hooks/useAxios';
 
 const Register = () => {
     const { createUser, signImWithGoogle, setUser, updateUser } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     const [profilePic, setProfilePic] = useState('')
-    // const axiosInstance = useAxios();
-    
+    const axiosInstance = useAxios();
+
     const from = location.state?.from || '/';
 
     const { register,
@@ -33,15 +32,14 @@ const Register = () => {
                 const user = userCredential.user;
 
                 // update userinfo in the database
-                // const userInfo = {
-                //     email: data.email,
-                //     displayName: data.name,
-                //     photoURL: profilePic,
-                //     role: 'student',
-                //     createdAt: new Date().toISOString(),
-                //     lastLogin: new Date().toISOString()
-                // }
-                // const userRes = await axiosInstance.post('/users', userInfo);
+                const userInfo = {
+                    email: data.email,
+                    displayName: data.name,
+                    photoURL: profilePic,
+                    role: 'user',
+                    createdAt: new Date().toISOString(),
+                }
+                const userRes = await axiosInstance.post('/users', userInfo);
 
 
                 // set image in the firebase
@@ -68,26 +66,26 @@ const Register = () => {
     }, []);
 
     const handleGoogleSignIn = () => {
-        //     signImWithGoogle()
-        //         .then(async (userCredential) => {
-        //             const user = userCredential.user;
-        //             const userInfo = {
-        //                 email: user.email,
-        //                 displayName: user.displayName,
-        //                 role: 'student',
-        //                 photoURL: user.photoURL,
-        //                 createdAt: new Date().toISOString(),
-        //                 lastLogin: new Date().toISOString()
-        //             }
-        //             const userRes = await axiosInstance.post('/users', userInfo);
+        signImWithGoogle()
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+                const userInfo = {
+                    email: user.email,
+                    displayName: user.displayName,
+                    role: 'user',
+                    photoURL: user.photoURL,
+                    createdAt: new Date().toISOString(),
+                }
+                const userRes = await axiosInstance.post('/users', userInfo);
+                setUser(user);
 
-        //             toast.success("Your Profile has been created")
-        //             navigate(from);
-        //         })
-        //         .catch((error) => {
-        //             const errorMessage = error.message;
-        //             console.error(errorMessage);
-        //         });
+                toast.success("Your Profile has been created")
+                navigate(from);
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.error(errorMessage);
+            });
     }
 
 
