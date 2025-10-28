@@ -8,18 +8,16 @@ import { toast } from 'react-toastify';
 import Lottie from 'lottie-react'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import useAxios from '../../Hooks/useAxios';
-
+import useAxiosSecure from '../../Hooks/useAxiosSecure';    
 
 const Login = () => {
     const { signImWithGoogle, loginUser, setUser } = useAuth();
     const location = useLocation();
     const navigate = useNavigate()
-    // const axiosInstance = useAxios()
     const from = location.state?.from || '/';
     const [errorMsg, setErrormsg] = useState('');
     const formRef = useRef(null);
-    const axiosInstance = useAxios();
+    const axiosSecure = useAxiosSecure();
 
     const { register,
         handleSubmit,
@@ -60,7 +58,7 @@ const Login = () => {
                     photoURL: user.photoURL,
                     createdAt: new Date().toISOString(),
                 }
-                const userRes = await axiosInstance.post('/users', userInfo);
+                const userRes = await axiosSecure.post('/users', userInfo);
                 setUser(user);
                 toast.success("You have successfully logged in");
                 navigate(from);

@@ -7,14 +7,15 @@ import { toast } from 'react-toastify';
 import Lottie from 'lottie-react';
 import lottieBg from '../../assets/lottie/carLottie.json'
 import useAuth from '../../Hooks/useAuth';
-import useAxios from '../../Hooks/useAxios';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+
 
 const Register = () => {
     const { createUser, signImWithGoogle, setUser, updateUser } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     const [profilePic, setProfilePic] = useState('')
-    const axiosInstance = useAxios();
+    const axiosSecure = useAxiosSecure();
 
     const from = location.state?.from || '/';
 
@@ -39,7 +40,7 @@ const Register = () => {
                     role: 'user',
                     createdAt: new Date().toISOString(),
                 }
-                const userRes = await axiosInstance.post('/users', userInfo);
+                const userRes = await axiosSecure.post('/users', userInfo);
 
 
                 // set image in the firebase
@@ -76,7 +77,7 @@ const Register = () => {
                     photoURL: user.photoURL,
                     createdAt: new Date().toISOString(),
                 }
-                const userRes = await axiosInstance.post('/users', userInfo);
+                const userRes = await axiosSecure.post('/users', userInfo);
                 setUser(user);
 
                 toast.success("Your Profile has been created")
