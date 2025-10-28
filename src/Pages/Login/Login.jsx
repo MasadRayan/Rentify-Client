@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { Link, ScrollRestoration, useLocation, useNavigate } from 'react-router';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import useAuth from '../../Hooks/useAuth';
-// import useAxios from '../../Hooks/useAuth';
 import lottieBg from '../../assets/lottie/carLottie.json'
 import { toast } from 'react-toastify';
 import Lottie from 'lottie-react'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import useAxios from '../../Hooks/useAxios';
 
 
 const Login = () => {
@@ -19,6 +19,7 @@ const Login = () => {
     const from = location.state?.from || '/';
     const [errorMsg, setErrormsg] = useState('');
     const formRef = useRef(null);
+    const axiosInstance = useAxios();
 
     const { register,
         handleSubmit,
@@ -49,25 +50,25 @@ const Login = () => {
     }, []);
 
     const handleGoogleSignIn = () => {
-        // signImWithGoogle()
-        //     .then(async (userCredential) => {
-        //         const user = userCredential.user;
-        //         const userInfo = {
-        //             email: user.email,
-        //             displayName: user.displayName,
-        //             photoURL: user.photoURL,
-        //             role: 'user',
-        //             createdAt: new Date().toISOString(),
-        //             lastLogin: new Date().toISOString()
-        //         }
-        //         const userRes = await axiosInstance.post('/users', userInfo);
-        //         toast.success("You have successfully logged in");
-        //         navigate(from);
-        //     })
-        //     .catch((error) => {
-        //         const errorMessage = error.message;
-        //         setErrormsg(errorMessage);
-        //     });
+        signImWithGoogle()
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+                const userInfo = {
+                    email: user.email,
+                    displayName: user.displayName,
+                    role: 'user',
+                    photoURL: user.photoURL,
+                    createdAt: new Date().toISOString(),
+                }
+                const userRes = await axiosInstance.post('/users', userInfo);
+                setUser(user);
+                toast.success("You have successfully logged in");
+                navigate(from);
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                setErrormsg(errorMessage);
+            });
     }
 
     useGSAP(() => {
@@ -79,7 +80,7 @@ const Login = () => {
             ease: "power3.out",
             stagger: 0.15,
         })
-        
+
     })
 
     return (
@@ -90,7 +91,7 @@ const Login = () => {
             <div ref={formRef}>
                 <h1 className="text-5xl font-extrabold">Welcome Back</h1>
                 <p className='my-3'>Login with <span className='bg-gradient-to-r from-[#ff8971] to-[#fa2a00] bg-clip-text text-transparent'>Rentify</span></p>
-                <form onSubmit={handleSubmit(onSubmit)}  className="gsap-item">
+                <form onSubmit={handleSubmit(onSubmit)} className="gsap-item">
                     <fieldset className="fieldset">
                         <label className="label">Email</label>
                         <input type="email" {...register('email', {
