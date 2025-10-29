@@ -9,6 +9,7 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import MyCars from "../DashboardPages/CarOwnerDashboard/MyCars";
 import Profile from "../DashboardPages/Profile";
 import DashboardHome from "../DashboardPages/DashboardHome/DashboardHome";
+import BecomeDriver from "../Pages/BecomeDriver/BecomeDriver";
 
 export const router  = createBrowserRouter([
     {
@@ -33,6 +34,13 @@ export const router  = createBrowserRouter([
                     <ListCars></ListCars>
                 </PrivateRoute>
             },
+            {
+                path: '/beADriver',
+                element: <PrivateRoute>
+                    <BecomeDriver></BecomeDriver>
+                </PrivateRoute>
+            },
+
             
         ]
     },
